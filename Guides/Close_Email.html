@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="shortcut icon" href="images/icon.png">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/hostingstartCSS.css">
+    </head>
+    <body>
+        
+<!-- Start Table Close Email-->        
+        <div id="CloseEmail" class="container">
+            <table class="table" id="table_Close_Email">
+            <thead>
+                <tr>
+                    <th>
+                        <h1>Close Email Guide </h1>
+                        <button id="showModalCloseMail" type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-pencil"></span> Customize </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        Hello <font id="ctm_name_CE"><b> (COSTUMER NAME) </b></font>,<br>
+                        It has been a pleasure working with you on this case.<br><br>
+                        Based on the previous email, we will proceed to archive the case. We appreciate the time
+                        spent working together and we value your relationship with Azure.<br><br>
+                        <i><p style="color:#202FE1";>
+                        You may receive an invitation from Microsoft to complete a brief web survey. Your feedback is very important to us. We use it to continually improve our service. We would appreciate it if you can take the time to complete this survey. In addition, if you would like to discuss any feedback you can contact me or my manager using the contact information in my signature.
+                        </p></i><br>
+                        Below is a summary of the steps taken on this case. <br><br>
+                        <b>========================================================================== <br>			
+                        <font size="+1"> >>> Service Request Information.</font><br></b>
+                        Case ID: [SR_Number]<br>
+                        Title: [Case_Title] <br>
+                        <b>========================================================================== </b><br>
+                        - [This summary must be like a guide that the customer can check is the issue happen again]<br>
+                        <b>========================================================================== </b> <br><br>
+                        <font id="ctm_name_CE_3"> (COSTUMER NAME)</font>, we wish you the best with your future development!<br><br>
+                        Have a great day, best wishes,<br><br>
+                        <b>(YOUR SIGNATURE)<b><br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+<!-- End Table Close Email-->
+
+<!-- Start Modal Close Email-->
+        <div class="modal" id="modalCloseMail">
+            <div class="modal-dialog">
+                <!-- Modal Content -->
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Personalize the guide.</h4>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <label for="ctmCE">Costumer name:</label>
+                        <input type="text" class="form-control" id="ctmCE" placeholder="Write the costumer name..." onkeypress="return justLetters(event)">
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" onclick="CloseEmailAdjust()">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                <!-- End Modal Content -->
+            </div>
+        </div>
+<!-- End Modal Close Email -->        
+    
+    <script type="text/javascript">
+    $(document).on('click', '#showModalCloseMail', function () {$('#modalCloseMail').modal('show');});
+    $(document).on('click', '#hideCloseMail', function () {$('#CloseEmail').hide("true")});
+    
+    function CloseEmailAdjust(){
+    if(document.getElementById("ctmCE").value !== ""){
+        var i_ctm_name = document.getElementById("ctmCE").value;
+        document.getElementById("ctm_name_CE").innerHTML = i_ctm_name;
+        document.getElementById("ctm_name_CE_2").innerHTML = i_ctm_name;
+        document.getElementById("ctm_name_CE_3").innerHTML = i_ctm_name;
+    }// if Costumer
+    $('#modalCloseMail').modal('hide');  
+    }//CloseEamailAdjust    
+
+    </script>
+    </body>
+</html>
