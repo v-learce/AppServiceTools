@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="shortcut icon" href="images/icon.png">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/hostingstartCSS.css">
+    </head>
+    <body>
+
+<!-- Start Table Signature-->        
+    <div id="Signature" class="container">
+        <table class="table" id="table_SignatureScript">
+            <thead>
+                <tr>
+                    <th>
+                        <h1>Signature Guide </h1>
+                        <button id="showModalSignature" type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-pencil"></span> Customize </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <b><font id="nameSign"> (YOUR NAME) </font></b> | Support Engineer | Azure Support<br>
+                        Email: <a id="micro_mail" href=""> (YOUR MICROSOFT MAIL) </a> | Manager: <a id="manager_mail" href=""> (YOUR MANAGER MAIL) </a>  <br>
+                        Working hours: <font id="work_hour"> 08:00 AM – 05:00 PM </font> | 
+                        <a target="_blank" href="http://www.timebie.com/std/gmt.php">Local Time</a> <br>
+                        <br>
+                        To reach Azure Support outside of my working hours, please email <a href="mailto:azbackup@microsoft.com">azbackup@microsoft.com</a> with your support request number. <br>
+                        <br>
+                        <a target="_blank" href="https://status.azure.com/en-us/status">Service Dashboard</a>  | 
+                        <a target="_blank" href="https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/overview">Create a Case</a> | 
+                        <a target="_blank" href="https://azure.microsoft.com/en-us/blog/topics/announcements/">Azure Announcements</a> | 
+                        <a target="_blank" href="https://feedback.azure.com/forums/34192--general-feedback">Have an idea or a suggestion?</a> <br>
+                        <br>
+                        <i>Azure Support will never ask for your account password or full credit card number. <br>
+                        For your privacy and security, NEVER send your login credentials or full credit card number in email.</i><br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<!-- End Table Signature-->
+        
+<!-- Start Modal Signature-->
+        <div class="modal" id="modalSignature">
+            <div class="modal-dialog">
+                <!-- Modal Content -->
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Personalize the guide.</h4>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <label for="usrS">Your name:</label>
+                        <input type="text" class="form-control" id="usrS" placeholder="Write your name..." onkeypress="return justLetters(event)">
+                        <label for="mcm">Your Microsoft mail:</label>
+                        <input type="text" class="form-control" id="mcm" placeholder="Write your Microsoft mail...">
+                        <label>Select your Working Hours:</label><br>
+                        <input id="time_entry" type="number" min="8" max="11" value="8" onkeypress="return justNumbers(event);"> AM <br>
+                        <label>Select your Manager:</label><br>
+                        <input type="checkbox" name="Paula" id="Paula" value="v-paara@microsoft.com" onchange="managerSelect('Paula')"> Paula Araya Chavarria <br>
+                        <input type="checkbox" name="Ronny" id="Ronny" value="v-ronc@microsoft.com" onchange="managerSelect('Ronny')"> Ronny Chaves <br>
+                        <input type="checkbox" name="Juan" id="Juan" value="v-juasol@microsoft.com" onchange="managerSelect('Juan')" checked> Juan Solano Chacon <br>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" onclick="SignatureAdjust()">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                <!-- End Modal Content -->
+            </div>
+        </div>
+<!-- End Modal Call Signature-->        
+    
+    <script type="text/javascript">    
+    $(document).on('click', '#showModalSignature', function () {$('#modalSignature').modal('show');});
+    
+    function SignatureAdjust(){
+        if(document.getElementById("usrS").value !== ""){
+            var i_usr_name = document.getElementById("usrS").value;
+            document.getElementById("nameSign").innerHTML = i_usr_name;
+        }// if User
+        if(document.getElementById("mcm").value !== ""){
+            var i_micromail = document.getElementById("mcm").value;
+            document.getElementById("micro_mail").innerHTML = i_micromail;
+            var mailTo = "mailto:"+i_micromail;
+            document.getElementById("micro_mail").href = mailTo;
+        }// if Microsoft Mail
+        workHours();
+        managerMail();
+        $('#modalSignature').modal('hide');    
+    }//end SignatureAdjust
+    </script>
+    </body>
+</html>

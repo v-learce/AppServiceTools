@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="shortcut icon" href="images/icon.png">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/hostingstartCSS.css">
+    </head>
+    <body>
+        
+<!-- Start Table Call Template-->  
+    <div id="Call" class="container">
+        <table class="table" id="table_CallScript">
+            <thead>
+                <tr>
+                    <th>
+                        <h1>Call Guide </h1>
+                        <button id="showModalCall" type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-pencil"></span> Customize </button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        Hello, may I speak with <font size="4px" id="ctm_name"><b> (COSTUMER NAME) </b></font> ? <br>
+                        Hello <font size="4px" id="ctm_name2"><b> (COSTUMER NAME) </b></font><br>
+                        How are you? / Is it a good time for you to talk?<br><br>
+                        My name is <font size="4px" id="nameCall"><b> (YOUR NAME) </b></font>. <br>
+                        I'm calling you from Microsoft Azure Support regarding your ticket ending into  <font size="4px" id="sr_number"><b> (LAST 4 SR NUMBERS) </b></font> about the issue:<br>
+                        <font size="4px" id="issue"><b> (ISSUE DESCRIPTION) </b></font>.<br><br>
+                        - Before we continue, just wanted to let you know this call may be monitored or recoded for quality and training purpose. Are you ok with this?.<br>
+                        - To help us improve the quality of our products, services, and training, this call may be recorded or monitored and information collected on this call may be accessed by Microsoft affiliates, subsidiaries, and service providers internationally.<br>
+                        - Do you consent to recording or monitoring of this call? <br><br>
+
+                        [Based on response, then the engineer should state:]  <br>
+                        [Yes]  “Thank you, this call may be recorded”   <br>
+                        [No]   “Thank you, this call will not be recorded”  You must dial *66 to stop the recording<br>
+                        NOTE: If we do not receive a [Yes], then we must always assume we do not have permission and we must terminate the call recording.<br>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<!-- End Table Call Template-->
+
+<!-- Start Modal Call-->
+        <div class="modal" id="modalCall">
+            <div class="modal-dialog">
+                <!-- Modal Content -->
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Personalize the guide.</h4>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <label for="usrC">Your name:</label>
+                        <input type="text" class="form-control" id="usrC" placeholder="Write your name..." onkeypress="return justLetters(event)">
+                        <label for="ctm">Costumer name:</label>
+                        <input type="text" class="form-control" id="ctm" placeholder="Write the costumer name..." onkeypress="return justLetters(event)">
+                        <label for="srn">SR Number:</label>
+                        <input type="text" class="form-control" id="srn" placeholder="Write the last 4 SR numbers" maxlength="4" onkeypress="return justNumbers(event);">
+                        <label for="iss">Issue:</label>
+                        <input type="text" class="form-control" id="iss" placeholder="Write the issue topic...">
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" onclick="CallAdjust()">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                <!-- End Modal Content -->
+            </div>
+        </div>
+<!-- End Modal Call-->
+    
+    <script type="text/javascript"> 
+        
+    $(document).on('click', '#showModalCall', function () {$('#modalCall').modal('show');});
+    
+    function CallAdjust() {
+        if(document.getElementById("usrC").value !== ""){
+            var i_usr_name = document.getElementById("usrC").value;
+            document.getElementById("nameCall").innerHTML = i_usr_name;
+        }// if User
+        if(document.getElementById("ctm").value !== ""){
+            var i_ctm_name = document.getElementById("ctm").value;
+            document.getElementById("ctm_name").innerHTML = i_ctm_name;
+            document.getElementById("ctm_name2").innerHTML = i_ctm_name;
+        }// if Costumer
+        if(document.getElementById("ctm").value !== ""){
+            var i_sr_number = document.getElementById("srn").value;
+            document.getElementById("sr_number").innerHTML = i_sr_number;
+        }// if SR Number
+        if(document.getElementById("iss").value !== ""){
+            var i_issue = document.getElementById("iss").value;
+            document.getElementById("issue").innerHTML = i_issue;
+        }// if Issue
+        if(document.getElementById("mcm").value !== ""){
+            var i_micromail = document.getElementById("mcm").value;
+            document.getElementById("micro_mail").innerHTML = i_micromail;
+            var mailTo = "mailto:"+i_micromail;
+            document.getElementById("micro_mail").href = mailTo;
+        }// if Microsoft Mail
+        workHours();
+        managerMail();
+        $('#modalCall').modal('hide');
+    }//end CallAdjust        
+    </script>
+    </body>
+</html>
